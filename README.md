@@ -1,3 +1,3 @@
-# lab-pet
+# lab-spellingbee
 
-This is the template for the Unit 2, Pet lab.
+This is the template for the Unit 2, Spelling Bee lab.

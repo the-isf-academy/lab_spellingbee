@@ -1,37 +1,35 @@
+from wordslist import letter_list, keyletter, word_list
 from spellingbee import SpellingBee
 from view import TerminalView
 
-def game():
 
-    spelling_bee = SpellingBee()
-    view = TerminalView()
+spelling_bee = SpellingBee(word_list, letter_list, keyletter)        # creates a SpellingBee()
+view = TerminalView()                                                # creates a TerminalView()
 
-    view.mystery_method_0()
+view.mystery_method_0()
 
-    view.mystery_method_1(spelling_bee.letters, spelling_bee.keyletter)
+view.mystery_method_1(spelling_bee.letter_list, spelling_bee.keyletter)
 
-    while True:
+while True:
 
-        user_guess = view.mystery_method_2()
+    user_guess = view.mystery_method_2()
 
-        for letter in user_guess:
-            if letter not in spelling_bee.letters:
-                break
+    for letter in user_guess:
+        if letter not in spelling_bee.letter_list:
+            break
 
-        if letter not in spelling_bee.letters:
-            view.mystery_method_3()
+    if letter not in spelling_bee.letter_list:
+        view.mystery_method_3()
 
-        elif spelling_bee.keyletter not in user_guess:
-            view.mystery_method_4()
+    elif spelling_bee.keyletter not in user_guess:
+        view.mystery_method_4()
 
-        elif user_guess in spelling_bee.guessedwords:
-            view.mystery_method_5()
-            
-        elif user_guess in spelling_bee.wordlist:
-            spelling_bee.correct_guess(user_guess)
-            view.mystery_method_6("mystery_value")
+    elif user_guess in spelling_bee.guessed_words_list:
+        view.mystery_method_5()
+        
+    elif user_guess in spelling_bee.word_list:
+        spelling_bee.correct_guess(user_guess)
+        view.mystery_method_6("mystery_value")
 
-        else:
-            view.mystery_method_7()
-
-game()
+    else:
+        view.mystery_method_7()

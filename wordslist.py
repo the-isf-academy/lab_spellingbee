@@ -1,6 +1,8 @@
-letters = ['T', 'C', 'O', 'L', 'I', 'N', 'M']
+letter_list = ['T', 'C', 'O', 'L', 'I', 'N', 'M']
+
 keyletter = 'M'
-words = ["COMIC",
+
+word_list = ["COMIC",
 "COMMIT",
 "COMMON",
 "COMMOTION",

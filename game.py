@@ -10,7 +10,9 @@ view.mystery_method_0()
 
 view.mystery_method_1(spelling_bee.letter_list, spelling_bee.keyletter)
 
-while True:
+game_play = True
+
+while game_play:
 
     user_guess = view.mystery_method_2()
 

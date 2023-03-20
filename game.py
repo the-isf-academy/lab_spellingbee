@@ -16,11 +16,13 @@ while game_play:
 
     user_guess = view.mystery_method_2()
 
+    is_letter_valid = True
+
     for letter in user_guess:
         if letter not in spelling_bee.letter_list:
-            break
-
-    if letter not in spelling_bee.letter_list:
+            is_letter_valid = False
+            
+    if  is_letter_valid == False:
         view.mystery_method_3()
 
     elif spelling_bee.keyletter not in user_guess:

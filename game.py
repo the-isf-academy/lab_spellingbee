@@ -1,39 +1,43 @@
 from wordslist import letter_list, keyletter, word_list
-from spellingbee import SpellingBee
+from model import SpellingBee
 from view import TerminalView
+from helpers import menu
 
+# create a SpellingBee object
+spelling_bee = SpellingBee(word_list, letter_list, keyletter)
+# create a TerminalView object
+terminal_view = TerminalView()                                       
 
-spelling_bee = SpellingBee(word_list, letter_list, keyletter)        # creates a SpellingBee()
-view = TerminalView()                                                # creates a TerminalView()
+terminal_view.welcome()
 
-view.mystery_method_0()
-
-view.mystery_method_1(spelling_bee.letter_list, spelling_bee.keyletter)
+terminal_view.rules(spelling_bee.letter_list, spelling_bee.keyletter)
 
 game_play = True
 
 while game_play:
 
-    user_guess = view.mystery_method_2()
+    # user guesses a word
+    user_guess = terminal_view.get_guess()
 
-    is_letter_valid = True
+    #check length of word
+    if len(user_guess) <= 3:
+        terminal_view.too_short()
 
-    for letter in user_guess:
-        if letter not in spelling_bee.letter_list:
-            is_letter_valid = False
-            
-    if  is_letter_valid == False:
-        view.mystery_method_3()
+    #check for bad letters
+    elif spelling_bee.check_letters(user_guess) == False:
+        terminal_view.bad_letters()
 
+    #check for center letter
     elif spelling_bee.keyletter not in user_guess:
-        view.mystery_method_4()
+        terminal_view.missing_center_letter()
+    
+    #check word list
+    elif spelling_bee.check_wordlist(user_guess) == False:
+        terminal_view.not_in_word_list()
 
-    elif user_guess in spelling_bee.guessed_words_list:
-        view.mystery_method_5()
-        
-    elif user_guess in spelling_bee.word_list:
-        spelling_bee.correct_guess(user_guess)
-        view.mystery_method_6("mystery_value")
-
+    #word is valid
     else:
-        view.mystery_method_7()
+        #save the correct word
+        spelling_bee.correct_word(user_guess)
+        #give the user a success message
+        terminal_view.correct()
